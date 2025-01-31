@@ -2,6 +2,7 @@
 export const config = {
     env: {
         apiEndpoint: process.env.NEXT_PUBLIC_API_END_POINT!,
+        prodApiEndpoint: process.env.NEXT_PUBLIC_PROD_API_ENDPOINT!,
         imagekit:{
 
             publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY!,
@@ -15,6 +16,7 @@ export const config = {
             redisToken: process.env.UPSTASH_REDIS_TOKEN!,
             qstashUrl: process.env.QSTASH_URL!,
             qstashToken: process.env.QSTASH_TOKEN!
-        }
+        },
+        resendToken: process.env.RESEND_TOKEN!
     }
 }

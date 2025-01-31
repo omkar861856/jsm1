@@ -16,6 +16,7 @@ export const users = pgTable("users", {
   role: ROLE_ENUM('role').notNull().default('USER'),
   date: date('last_activity_date').notNull().defaultNow(),
   createdAt: timestamp('created_at').defaultNow(),
+  lastActivityDate: date('last_activity_date').defaultNow(),
 });
 
 
