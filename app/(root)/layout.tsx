@@ -14,6 +14,7 @@ const Layout = async({children}: {children:ReactNode}) => {
   }
 
   after(async ()=>{
+    
     if(!session?.user?.id)return;
 
     // get the user and see if the last activity date is today
@@ -37,7 +38,7 @@ const Layout = async({children}: {children:ReactNode}) => {
 
         <div className='max-auto max-w-7xl'>
 
-            {session && <Header session={session} />}
+            {session && <Header/>}
 
             <div className="mt-20 pb-20">
 

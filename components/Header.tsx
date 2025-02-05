@@ -1,45 +1,47 @@
-"use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
-import { cn, getInitials } from "@/lib/utils";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Session } from "next-auth";
+import Image from "next/image";
+import { CiLogout } from "react-icons/ci";
+import { signOut } from "@/auth";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const Header = ({session}:{session:Session}) => {
-  const pathName = usePathname();
+
+const Header = async () => {
   return (
     <header className="my-10 flex justify-between gap-5">
-      <Link href="/">&#9733; Bookwise</Link>
+      <Link href="/" className="flex flex-row items-center gap-2">
+        <Image src="/icons/logo.svg" alt="logo" width={40} height={40} />
+        <h2 className="font-bebas-neue text-4xl text-light-100 hidden sm:block">
+          BookWise
+        </h2>
+      </Link>
 
-      <ul className="flex flex-row items-center gap-8">
-       
+      <ul className="flex flex-row items-center gap-8 items-start">
         <li>
-          <Link
-            href="/library"
-            className={cn(
-              "text-base cursor-pointer capitalize",
-              pathName === "/library" ? "text-ligth-200" : "text-light-100"
-            )}
-          >
-            Library
-          </Link>
+          <Link href="/">Home</Link>
         </li>
-
         <li>
-          <Link
-            href="/my-profile"
-            className={cn(
-              "text-base cursor-pointer capitalize",
-              pathName === "/" ? "text-ligth-200" : "text-light-100"
-            )}
-          >
-            <Avatar>
-              <AvatarFallback className="text-black">{getInitials(session?.user?.name ?? 'IN')}</AvatarFallback>
-            </Avatar>
-          </Link>
+          <Link href="/search">Search</Link>
         </li>
+        <li className="flex flex-row gap-2 items-center">
+          <Link href={
+            '/my-profile'
+          }>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        </Link>
+        </li>
+        <li>
 
+            <CiLogout className="cursor-pointer" onClick={async () => {
+              
+              "use server";
+
+              await signOut();
+            }} style={{ color: "red" }} />
+
+        </li>
       </ul>
     </header>
   );

@@ -18,9 +18,9 @@ import {
   import Link from 'next/link'
   import { Path } from 'react-hook-form'
 import { FIELD_NAMES, FIELD_TYPES } from '@/constants'
-import ImageUpload from './ImageUpload'
 import { toast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
+import FileUpload from './FileUpload'
 
 interface Props<T extends FieldValues>{
     schema: ZodType<T>,
@@ -90,17 +90,27 @@ const AuthForm = <T extends FieldValues>({type, schema, defaultValues, onSubmit}
                           <Input placeholder={field.name} {...field} />
                         </FormControl> */}
 
-                        <FormControl>
-
-                        {
-                          field.name === 'universityCard'
-                          ?
-                          (<ImageUpload onFileChange={field.onChange}/>)
-                          :
-                          <Input  required className='form-input' type={FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]} {...field}/>
-                        } 
-
-                        </FormControl>
+<FormControl>
+                    {field.name === "universityCard" ? (
+                      <FileUpload
+                        type="image"
+                        accept="image/*"
+                        placeholder="Upload your ID"
+                        folder="ids"
+                        variant="dark"
+                        onFileChange={field.onChange}
+                      />
+                    ) : (
+                      <Input
+                        required
+                        type={
+                          FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
+                        }
+                        {...field}
+                        className="form-input"
+                      />
+                    )}
+                     </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}

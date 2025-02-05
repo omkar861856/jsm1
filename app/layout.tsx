@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import { Toaster } from "@/components/ui/toaster"
 import {SessionProvider} from 'next-auth/react'
 import { auth } from "@/auth";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 
 
@@ -42,8 +43,10 @@ const RootLayout = async ({
         <body
           className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
         >
-          {children}
-          <Toaster />
+          {/* Loading spinner to traverse between components */}
+          {/* <LoadingSpinner /> */}
+        {children}
+        <Toaster />
         </body>
       </SessionProvider>
     </html>
