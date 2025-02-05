@@ -2,8 +2,7 @@
 
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { config } from "@/lib/config";
-import { IKImage } from "imagekitio-next";
+
 
 interface UserProps {
   fullName: string;
@@ -50,7 +49,7 @@ const IDCard: React.FC<UserProps> = ({
       {/* Bottom Section */}
         {/* Details Section */}
         
-          <IKImage
+          {/* <IKImage
             path={universityCard}
             urlEndpoint={config.env.imagekit.urlEndpoint}
             alt="Book cover"
@@ -59,7 +58,7 @@ const IDCard: React.FC<UserProps> = ({
             lqip={{ active: true }}
             width={300}
             height={250}
-          />
+          /> */}
     </div>
   );
 };
